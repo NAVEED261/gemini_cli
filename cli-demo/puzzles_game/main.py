@@ -60,7 +60,7 @@ if st.session_state.current_question:
         
         # Move to next question after checking answer
         start_new_question()
-        st.experimental_rerun()
+        st.rerun()
 
 else:
     st.subheader("--- Game Over ---")
