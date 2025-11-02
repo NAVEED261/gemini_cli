@@ -99,4 +99,10 @@ Poore process ke dauran, aapko nimnlikhit kaam karne pade/padenge:
 
 ---
 
+### Deployed Streamlit App URL
+Aapki Streamlit app ab is URL par live hai:
+[https://geminicli-cw9wwwevs4hvucgzrhkcbf.streamlit.app/](https://geminicli-cw9wwwevs4hvucgzrhkcbf.streamlit.app/)
+
+---
+
 Umeed hai yeh document aapke liye helpful hoga!
