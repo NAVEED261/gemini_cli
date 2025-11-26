@@ -1,15 +1,5 @@
-from main import get_exchange_rates, convert_currency, parse_input
+from main import get_exchange_rates, convert_currency, parse_input, nlp
 import streamlit as st
-import spacy
-
-# Load spaCy English model
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    st.warning("Downloading spaCy model 'en_core_web_sm' (this may take a few minutes)...")
-    from spacy.cli import download
-    download("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
 
 def main_streamlit():
     st.title("AI-Enhanced Currency Converter")
