@@ -1,20 +1,12 @@
 import requests
 import spacy
-import os
-from pathlib import Path
+import streamlit as st
 
-# Set a custom data path for spaCy models within the app directory
-SPACY_DATA_PATH = Path(__file__).parent / ".spacy"
-os.makedirs(SPACY_DATA_PATH, exist_ok=True)
+@st.cache_resource
+def load_model():
+    return spacy.load("en_core_web_sm")
 
-# Load spaCy English model
-try:
-    nlp = spacy.load(str(SPACY_DATA_PATH / "en_core_web_sm"))
-except OSError:
-    print(f"Downloading spaCy model 'en_core_web_sm' to {SPACY_DATA_PATH} (this may take a few minutes)...")
-    from spacy.cli import download
-    download("en_core_web_sm", "--path", str(SPACY_DATA_PATH))
-    nlp = spacy.load(str(SPACY_DATA_PATH / "en_core_web_sm"))
+nlp = load_model()
 
 EXCHANGE_RATE_API_URL = "https://open.er-api.com/v6/latest/"
 
@@ -105,35 +97,31 @@ def parse_input(text):
     return amount, from_currency, to_currency
 
 def main():
-    print("Welcome to the AI-Enhanced Currency Converter!")
-    print("Type 'exit' to quit.")
+    st.title("AI-Enhanced Currency Converter")
+    st.write("Enter your conversion request (e.g., 'convert 100 USD to EUR')")
 
-    while True:
-        user_input = input("Enter your conversion request (e.g., 'convert 100 USD to EUR'): ").strip()
-        if user_input.lower() == 'exit':
-            break
+    user_input = st.text_input("Conversion Request:")
 
-
+    if user_input:
         amount, from_currency, to_currency = parse_input(user_input)
 
         if amount is None:
-            print("Could not detect a valid amount. Please specify an amount (e.g., '100').")
-            continue
-        if from_currency is None or to_currency is None:
-            print("Could not detect both 'from' and 'to' currencies. Please specify them (e.g., 'USD to EUR').")
-            continue
-
-        print(f"Detected: {amount} {from_currency} to {to_currency}")
-
-        # Fetch rates using the from_currency as base
-        rates = get_exchange_rates(from_currency)
-
-        if rates:
-            converted_amount = convert_currency(amount, from_currency, to_currency, rates)
-            if converted_amount is not None:
-                print(f"{amount} {from_currency} is equal to {converted_amount:.2f} {to_currency}")
+            st.warning("Could not detect a valid amount. Please specify an amount (e.g., '100').")
+        elif from_currency is None or to_currency is None:
+            st.warning("Could not detect both 'from' and 'to' currencies. Please specify them (e.g., 'USD to EUR').")
         else:
-            print("Failed to fetch exchange rates. Please check your currency codes or network connection.")
+            st.info(f"Detected: {amount} {from_currency} to {to_currency}")
+
+            rates = get_exchange_rates(from_currency)
+
+            if rates:
+                converted_amount = convert_currency(amount, from_currency, to_currency, rates)
+                if converted_amount is not None:
+                    st.success(f"{amount} {from_currency} is equal to {converted_amount:.2f} {to_currency}")
+                else:
+                    st.error("Failed to perform currency conversion. Please check your inputs.")
+            else:
+                st.error("Failed to fetch exchange rates. Please check your currency codes or network connection.")
 
 if __name__ == "__main__":
     main()
