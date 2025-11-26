@@ -74,6 +74,66 @@ Ek Agentic AI Developer ke tor par, main aap ke liye mukhtalif qism ke tasks per
 *   **Structured Task Management:** `Todo` list ke zariye aap ke tasks ko organize aur track karta hoon, jis se aap ko progress ki clear visibility milti hai.
 *   **No Context Loss:** Pura conversation context yaad rakhta hoon, jis se aap ko baar baar cheezein repeat karne ki zaroorat nahi padti.
 
+## Example: Comprehensive Prompt for a Next.js E-commerce Website
+
+Ek professional e-commerce website develop karne ke liye, aap mujhe is tarah se detailed specifications de sakte hain. Jitni zyada tafseelat hongi, utna hi behtar main aap ke vision ko haqeeqat mein badal paunga:
+
+---
+
+**PROMPT EXAMPLE:**
+
+"**Task:** Next.js mein aik complete e-commerce website develop karo. Is mein front-end (Next.js, Tailwind CSS) aur back-end (Node.js/Express ya Next.js API Routes, MongoDB database) shamil honge. Yeh responsive honi chahiye aur modern UI/UX principles follow kare.
+
+**High-Level Features:**
+
+1.  **User Authentication:** Sign up, Login, Logout, Password Reset, Google/GitHub OAuth (optional).
+2.  **Product Management:** Admin panel se products add/edit/delete karna (name, description, price, images, categories, stock).
+3.  **Product Display:**
+    *   Homepage: Featured products, New arrivals.
+    *   Product Listing Page: All products, filtering (by category, price range), sorting (price, popularity), pagination.
+    *   Product Detail Page: Product image gallery, detailed description, add-to-cart button, related products.
+4.  **Shopping Cart:** Add/remove items, update quantities, view cart summary.
+5.  **Checkout Flow:**
+    *   Shipping Address selection.
+    *   Payment Integration: Stripe ya PayPal (sandbox mode for now).
+    *   Order Confirmation.
+6.  **Order Management:** User apne previous orders dekh sake, Admin saare orders manage kar sake (status update).
+7.  **Search Functionality:** Products search karne ke liye search bar (fuzzy search).
+
+**Technical Stack:**
+
+*   **Front-end:** Next.js (Pages Router/App Router - jo modern ho), React, TypeScript (optional but preferred), Tailwind CSS (styling), Zustand/Context API (state management).
+*   **Back-end:** Node.js with Express.js for a separate API, ya Next.js API Routes. Database ke liye MongoDB (Mongoose ODM ke sath).
+*   **Deployment Target:** Vercel (front-end) aur Render/Fly.io (back-end API/DB).
+
+**UI/UX Guidelines:**
+
+*   Clean, minimalist design.
+*   Mobile-first responsive approach.
+*   Fast loading times (optimised images, lazy loading).
+*   Consistent branding (logo, color palette - default black/white/grey, ya koi simple theme).
+
+**Development Steps (Expected from Claude Code):**
+
+1.  Project setup: Next.js project initialize karna, Tailwind CSS configure karna.
+2.  Database setup: MongoDB connection, Mongoose schemas define karna (User, Product, Order).
+3.  API Endpoints development: RESTful APIs for authentication, products, cart, orders.
+4.  Front-end component development: Har feature ke liye React components banana.
+5.  Integration: Front-end ko back-end APIs se connect karna.
+6.  Testing: Basic unit tests for critical functions (e.g., cart logic, authentication).
+7.  Documentation: `README.md` mein project setup, running instructions, aur deployment guidelines.
+8.  Version Control: Regular Git commits with descriptive messages.
+
+**Instructions:**
+
+*   Start with the core features (Product Display, Add to Cart).
+*   Har feature complete hone par mujhe update karna.
+*   Agar koi architectural decision lena ho ya koi ambiguity ho, to mujhse `AskUserQuestion` tool ke zariye pooch lena.
+*   Code clean aur well-commented hona chahiye.
+*   `TodoWrite` tool ka istemal kar ke poore task ko steps mein divide kar ke track karte rehna.
+
+" ---
+
 ## Aik App Banate Waqt Aap Ka Role (Human's Role: Start to End)
 
 Jab aap mere saath mil kar koi app bana rahe honge, to aap ka role bahut zaroori hai. Aap ka kaam high-level vision aur critical decisions provide karna hai:
