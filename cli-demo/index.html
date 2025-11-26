@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 4th Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); /* Brighter, playful gradient */
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .card-container {
+            perspective: 1000px;
+        }
+
+        .birthday-card {
+            background: #fff;
+            border-radius: 25px; /* More rounded corners */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); /* Stronger shadow */
+            padding: 40px;
+            text-align: center;
+            max-width: 450px; /* Slightly larger */
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.8s ease-in-out;
+            border: 5px solid #ffeb3b; /* Playful border */
+        }
+
+        .birthday-card:hover {
+            transform: rotateY(15deg) rotateX(8deg) scale(1.02); /* More pronounced hover */
+        }
+
+        .birthday-card h1 {
+            font-family: 'Balsamiq Sans', cursive; /* Fun, cartoonish font */
+            font-size: 4em; /* Larger font size */
+            color: #ff5722; /* Bright orange */
+            margin-bottom: 15px;
+            position: relative;
+            animation: bounceIn 1s ease-out forwards, pulse 2s infinite 1s; /* New animation */
+        }
+
+        .birthday-card h1::before,
+        .birthday-card h1::after {
+            content: '🎈'; /* Balloons instead of party poppers */
+            position: absolute;
+            font-size: 0.7em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .birthday-card h1::before { left: -40px; }
+        .birthday-card h1::after { right: -40px; }
+
+        .birthday-card h2 {
+            font-family: 'Balsamiq Sans', cursive;
+            font-size: 2.5em;
+            color: #4CAF50; /* Green for the age */
+            margin-top: -10px;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .birthday-card p {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .birthday-card .name {
+            font-weight: 700;
+            color: #e91e63; /* Bright pink */
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .audio-player {
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 12px; /* Slightly larger confetti */
+            height: 12px;
+            background-color: #f0c419; /* Yellow */
+            top: -12px;
+            border-radius: 50%;
+            animation: fall 5s infinite;
+            opacity: 0;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2); /* Confetti shadow */
+        }
+
+        .confetti:nth-child(2n) { background-color: #e94e77; /* Pink */ }
+        .confetti:nth-child(3n) { background-color: #4CAF50; /* Green */ }
+        .confetti:nth-child(4n) { background-color: #2196F3; /* Blue */ }
+        .confetti:nth-child(5n) { background-color: #9C27B0; /* Purple */ }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotateZ(720deg); opacity: 0; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Confetti animation delays and positions */
+        .confetti:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .confetti:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .confetti:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .confetti:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .confetti:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .confetti:nth-child(6) { left: 60%; animation-delay: 0.5s; }
+        .confetti:nth-child(7) { left: 70%; animation-delay: 1.5s; }
+        .confetti:nth-child(8) { left: 80%; animation-delay: 2.5s; }
+        .confetti:nth-child(9) { left: 90%; animation-delay: 3.5s; }
+        .confetti:nth-child(10) { left: 5%; animation-delay: 4.5s; }
+        .confetti:nth-child(11) { left: 15%; animation-delay: 0.2s; }
+        .confetti:nth-child(12) { left: 25%; animation-delay: 1.2s; }
+        .confetti:nth-child(13) { left: 35%; animation-delay: 2.2s; }
+        .confetti:nth-child(14) { left: 45%; animation-delay: 3.2s; }
+        .confetti:nth-child(15) { left: 55%; animation-delay: 4.2s; }
+        .confetti:nth-child(16) { left: 65%; animation-delay: 0.7s; }
+        .confetti:nth-child(17) { left: 75%; animation-delay: 1.7s; }
+        .confetti:nth-child(18) { left: 85%; animation-delay: 2.7s; }
+        .confetti:nth-child(19) { left: 95%; animation-delay: 3.7s; }
+        .confetti:nth-child(20) { left: 12%; animation-delay: 4.7s; }
+
+
+        @media (max-width: 600px) {
+            .birthday-card {
+                padding: 30px;
+            }
+            .birthday-card h1 {
+                font-size: 3em;
+            }
+            .birthday-card h2 {
+                font-size: 2em;
+            }
+            .birthday-card p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="birthday-card">
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <h1>Happy Birthday!</h1>
+            <h2>To our little star, <span class="name">Umaima Gul</span>!</h2>
+            <p>Wishing you a magical 4th birthday filled with fun, laughter, and all your favorite things!</p>
+            <p>May your day be as bright and wonderful as you are.</p>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/q0210000000" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <audio controls loop autoplay class="audio-player">
+                <!-- Replace 'your-song.mp3' with the actual path to your audio file -->
+                <source src="your-song.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <p>Lots of love!</p>
+        </div>
+    </div>
+</body>
+</html>
