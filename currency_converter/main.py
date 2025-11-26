@@ -6,16 +6,15 @@ from pathlib import Path
 # Set a custom data path for spaCy models within the app directory
 SPACY_DATA_PATH = Path(__file__).parent / ".spacy"
 os.makedirs(SPACY_DATA_PATH, exist_ok=True)
-spacy.util.set_data_path(SPACY_DATA_PATH)
 
 # Load spaCy English model
 try:
-    nlp = spacy.load("en_core_web_sm")
+    nlp = spacy.load(str(SPACY_DATA_PATH / "en_core_web_sm"))
 except OSError:
     print(f"Downloading spaCy model 'en_core_web_sm' to {SPACY_DATA_PATH} (this may take a few minutes)...")
     from spacy.cli import download
-    download("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
+    download("en_core_web_sm", "--path", str(SPACY_DATA_PATH))
+    nlp = spacy.load(str(SPACY_DATA_PATH / "en_core_web_sm"))
 
 EXCHANGE_RATE_API_URL = "https://open.er-api.com/v6/latest/"
 
